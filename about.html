@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | MS Enterprise</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            padding: 120px 0 50px;
+            text-align: center;
+            background: linear-gradient(rgba(10, 14, 26, 0.9), rgba(10, 14, 26, 0.9)), url('images/hero_bg.png') center/cover;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .about-content {
+            padding: 5rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+        .about-image {
+            position: relative;
+        }
+        .about-image img {
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .stats-section {
+            background-color: var(--card-bg);
+            padding: 4rem 0;
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .stat-item p {
+            font-size: 1.1rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 768px) {
+            .about-content { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">MS <span>Enterprise</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>About MS Enterprise</h1>
+        </div>
+    </div>
+
+    <section class="container about-content reveal">
+        <div class="about-text reveal-left">
+            <h2 class="gradient-text">Your Trusted Partner in Security</h2>
+            <p>Introducing Security Surveillance, your trusted partner in ensuring the safety and security of your business or home. With years of experience in the industry, we offer cutting-edge security solutions that are tailored to meet the unique needs of our clients.</p>
+            <p>From state-of-the-art CCTV cameras to advanced access control systems, we provide comprehensive surveillance services that deter crime and protect your assets. What sets us apart? Our team of experts stays up-to-date with the latest technology and security trends, ensuring that our solutions are always innovative and effective.</p>
+            <p>At MS Enterprise, we understand that no two businesses or homes are the same. That's why we work closely with our clients to create customized security solutions that meet their specific needs and budget. Whether you're a small business owner or a homeowner looking to protect your property, we have the expertise and resources to keep you safe.</p>
+        </div>
+        <div class="about-image reveal-right floating">
+            <img src="images/cctv_camera.png" alt="Security Cameras" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 0 30px rgba(14, 165, 233, 0.2);">
+        </div>
+    </section>
+
+    <section class="stats-section reveal">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item glass-card reveal" style="animation-delay: 0.2s;">
+                    <h3>100+</h3>
+                    <p>Projects Completed</p>
+                </div>
+                <div class="stat-item glass-card reveal" style="animation-delay: 0.4s;">
+                    <h3>24/7</h3>
+                    <p>Monitoring Support</p>
+                </div>
+                <div class="stat-item glass-card reveal" style="animation-delay: 0.6s;">
+                    <h3>100%</h3>
+                    <p>Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 1rem;">MS <span>Enterprise</span></a>
+                    <p>Your one-stop solution for advanced security surveillance needs in Dahod.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> 9574757153</li>
+                        <li><i class="fas fa-envelope"></i> msenterprisedahod@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Burhani Enclave, Opp Bhagini Samaj, SV Patel road, Dahod.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MS Enterprise. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

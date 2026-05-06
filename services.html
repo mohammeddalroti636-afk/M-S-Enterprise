@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | MS Enterprise</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            padding: 120px 0 50px;
+            text-align: center;
+            background: linear-gradient(rgba(10, 14, 26, 0.9), rgba(10, 14, 26, 0.9)), url('images/hero_bg.png') center/cover;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .services-section {
+            padding: 5rem 0;
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        .service-card {
+            padding: 3rem 2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(14, 165, 233, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+        .service-card:hover .service-icon {
+            background: var(--primary);
+            color: #fff;
+            transform: scale(1.1);
+        }
+        .service-card p {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">MS <span>Enterprise</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1 class="gradient-text">Our Services</h1>
+            <p style="color: var(--text-muted); max-width: 600px; margin: 1rem auto 0;" class="reveal">Comprehensive enterprise management and security surveillance solutions catering to modern business requirements.</p>
+        </div>
+    </div>
+
+    <section class="services-section container">
+        <div class="services-grid">
+            <div class="service-card glass-card reveal">
+                <div class="service-icon floating"><i class="fas fa-video"></i></div>
+                <h3>CCTV Surveillance</h3>
+                <p>State-of-the-art high definition cameras and recording systems designed for round-the-clock monitoring of your premises with remote access capabilities.</p>
+                <button class="btn btn-outline" onclick="sendWhatsAppMessage('I want to know more about CCTV Surveillance services.')">Enquire Now</button>
+            </div>
+            
+            <div class="service-card glass-card reveal" style="animation-delay: 0.2s;">
+                <div class="service-icon floating"><i class="fas fa-fingerprint"></i></div>
+                <h3>Access Control</h3>
+                <p>Advanced biometric and RFID card-based access systems to secure restricted areas, track employee attendance, and prevent unauthorized entry.</p>
+                <button class="btn btn-outline" onclick="sendWhatsAppMessage('I want to know more about Access Control systems.')">Enquire Now</button>
+            </div>
+
+            <div class="service-card glass-card reveal" style="animation-delay: 0.4s;">
+                <div class="service-icon floating"><i class="fas fa-bell"></i></div>
+                <h3>Alarm Systems</h3>
+                <p>Intrusion detection and fire alarm systems that instantly notify authorities and property owners in case of emergencies or unauthorized access.</p>
+                <button class="btn btn-outline" onclick="sendWhatsAppMessage('I want to know more about Alarm Systems.')">Enquire Now</button>
+            </div>
+
+            <div class="service-card glass-card reveal">
+                <div class="service-icon floating"><i class="fas fa-door-closed"></i></div>
+                <h3>Video Door Phones</h3>
+                <p>Smart intercom systems allowing you to visually identify and communicate with visitors before granting access to your home or office building.</p>
+                <button class="btn btn-outline" onclick="sendWhatsAppMessage('I want to know more about Video Door Phones.')">Enquire Now</button>
+            </div>
+
+            <div class="service-card glass-card reveal" style="animation-delay: 0.2s;">
+                <div class="service-icon floating"><i class="fas fa-desktop"></i></div>
+                <h3>24/7 Monitoring</h3>
+                <p>Dedicated remote monitoring services ensuring constant surveillance of your property and immediate response protocol initiation if threats are detected.</p>
+                <button class="btn btn-outline" onclick="sendWhatsAppMessage('I want to know more about 24/7 Monitoring services.')">Enquire Now</button>
+            </div>
+
+            <div class="service-card glass-card reveal" style="animation-delay: 0.4s;">
+                <div class="service-icon floating"><i class="fas fa-cogs"></i></div>
+                <h3>Custom Solutions</h3>
+                <p>Tailor-made security architecture designed specifically to address the unique vulnerabilities and requirements of your specific business environment.</p>
+                <button class="btn btn-outline" onclick="sendWhatsAppMessage('I need a custom security solution.')">Enquire Now</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 1rem;">MS <span>Enterprise</span></a>
+                    <p>Your one-stop solution for advanced security surveillance needs in Dahod.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> 9574757153</li>
+                        <li><i class="fas fa-envelope"></i> msenterprisedahod@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Burhani Enclave, Opp Bhagini Samaj, SV Patel road, Dahod.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MS Enterprise. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

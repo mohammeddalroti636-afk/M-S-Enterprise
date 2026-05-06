@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MS Enterprise | Security Surveillance Solutions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Home specific styles */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(10, 14, 26, 0.8), rgba(10, 14, 26, 0.9)), url('images/hero_bg.png') center/cover;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            padding-top: 70px;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+        .hero h1 span {
+            color: var(--primary);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+        .features-section {
+            padding: 5rem 0;
+            background-color: var(--dark-bg);
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .feature-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .featured-products {
+            padding: 5rem 0;
+            background-color: var(--darker-bg);
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff; /* White bg for product images as requested */
+        }
+        .product-img-container img {
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .product-actions .btn {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero-btns { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">MS <span>Enterprise</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="admin.html" style="color: var(--text-muted);"><i class="fas fa-lock"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero reveal">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="gradient-text">Advanced Security Surveillance Solutions</h1>
+                <p>Your trusted partner in ensuring the safety and security of your business and home. Cutting-edge technology tailored to your needs.</p>
+                <div class="hero-btns">
+                    <a href="products.html" class="btn btn-primary glow-pulse">Explore Products</a>
+                    <a href="contact.html" class="btn btn-outline">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title reveal">Why Choose Us</h2>
+            <div class="features-grid">
+                <div class="feature-card glass-card reveal-left">
+                    <div class="feature-icon floating"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Comprehensive Protection</h3>
+                    <p>From CCTV to access control, we provide full-scale security solutions that deter crime.</p>
+                </div>
+                <div class="feature-card glass-card reveal">
+                    <div class="feature-icon floating" style="animation-delay: 1s;"><i class="fas fa-clock"></i></div>
+                    <h3>24/7 Monitoring</h3>
+                    <p>Around-the-clock surveillance and response services for ultimate peace of mind.</p>
+                </div>
+                <div class="feature-card glass-card reveal-right">
+                    <div class="feature-icon floating" style="animation-delay: 2s;"><i class="fas fa-tools"></i></div>
+                    <h3>Custom Solutions</h3>
+                    <p>Tailored security systems designed specifically for your unique requirements and budget.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products reveal">
+        <div class="container">
+            <h2 class="section-title">Featured Products</h2>
+            <div class="product-grid" id="featured-products-container">
+                <!-- Products loaded via JS -->
+                <p style="text-align: center; width: 100%; color: var(--text-muted);">Loading products...</p>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="products.html" class="btn btn-outline">View All Products</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 1rem;">MS <span>Enterprise</span></a>
+                    <p>Your one-stop solution for advanced security surveillance needs in Dahod.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> 9574757153</li>
+                        <li><i class="fas fa-envelope"></i> msenterprisedahod@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Burhani Enclave, Opp Bhagini Samaj, SV Patel road, Dahod.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MS Enterprise. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const container = document.getElementById('featured-products-container');
+            
+            // Wait for DB to potentially seed (handled in script.js)
+            setTimeout(async () => {
+                const products = await fetchFeaturedProducts();
+                
+                if (products.length === 0) {
+                    container.innerHTML = '<p style="text-align: center; width: 100%; color: var(--text-muted);">No featured products available yet.</p>';
+                    return;
+                }
+
+                container.innerHTML = products.map(product => `
+                    <div class="product-card">
+                        <div class="product-img-container">
+                            <img src="${product.image_url || 'images/cctv_camera.png'}" alt="${product.name}">
+                        </div>
+                        <div class="product-info">
+                            <div class="product-category">${product.category}</div>
+                            <h3 class="product-name">${product.name}</h3>
+                            <div class="product-price">${formatCurrency(product.price)}</div>
+                            <div class="product-actions">
+                                <a href="products.html" class="btn btn-outline">View Details</a>
+                                <button class="btn btn-primary" onclick="sendWhatsAppMessage('Hi MS Enterprise, I am interested in the ${product.name}. Please provide more details.')">Enquiry</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }, 500); // slight delay to allow seeding if needed
+        });
+    </script>
+</body>
+</html>

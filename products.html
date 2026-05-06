@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | MS Enterprise</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .page-header {
+            padding: 120px 0 50px;
+            text-align: center;
+            background: linear-gradient(rgba(10, 14, 26, 0.9), rgba(10, 14, 26, 0.9)), url('images/hero_bg.png') center/cover;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .products-layout {
+            display: flex;
+            gap: 2rem;
+            padding: 4rem 0;
+        }
+        .filters-sidebar {
+            width: 250px;
+            flex-shrink: 0;
+        }
+        .search-box {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border: 1px solid var(--glass-border);
+            background: rgba(255,255,255,0.05);
+            color: #fff;
+            margin-bottom: 2rem;
+        }
+        .category-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .category-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            text-align: left;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+        .category-btn:hover, .category-btn.active {
+            background: rgba(14, 165, 233, 0.1);
+            color: var(--primary);
+        }
+        .products-main {
+            flex-grow: 1;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: var(--transition);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+        .product-img-container {
+            height: 200px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+        }
+        .product-img-container img {
+            max-height: 100%;
+            object-fit: contain;
+        }
+        .product-info {
+            padding: 1.5rem;
+        }
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        .product-price {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+        .product-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .product-actions .btn {
+            flex: 1;
+            padding: 0.5rem;
+            font-size: 0.9rem;
+        }
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: var(--darker-bg);
+            border: 1px solid var(--glass-border);
+            width: 90%;
+            max-width: 800px;
+            border-radius: 12px;
+            position: relative;
+            display: flex;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .close-modal {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            font-size: 1.5rem;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .modal-img {
+            flex: 1;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .modal-details {
+            flex: 1;
+            padding: 3rem 2rem;
+        }
+        .modal-features {
+            margin: 1.5rem 0;
+        }
+        .modal-features li {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+        }
+        .modal-features li i {
+            color: var(--primary);
+            margin-right: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .products-layout { flex-direction: column; }
+            .filters-sidebar { width: 100%; }
+            .modal-content { flex-direction: column; }
+            .modal-img { min-height: 250px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">MS <span>Enterprise</span></a>
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Our Products</h1>
+        </div>
+    </div>
+
+    <section class="container products-layout">
+        <aside class="filters-sidebar">
+            <input type="text" id="search-input" class="search-box" placeholder="Search products...">
+            <h3 style="margin-bottom: 1rem; font-size: 1.2rem;">Categories</h3>
+            <div class="category-list" id="category-filters">
+                <!-- Categories populated via JS -->
+            </div>
+        </aside>
+
+        <main class="products-main">
+            <div class="product-grid" id="products-grid">
+                <!-- Products loaded via JS -->
+                <p style="text-align: center; width: 100%; color: var(--text-muted);">Loading products...</p>
+            </div>
+        </main>
+    </section>
+
+    <!-- Product Details Modal -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content glass-card">
+            <i class="fas fa-times close-modal" onclick="closeModal()"></i>
+            <div class="modal-img">
+                <img id="modal-image" src="" alt="Product">
+            </div>
+            <div class="modal-details">
+                <div class="product-category" id="modal-category">Category</div>
+                <h2 id="modal-title" style="margin-bottom: 1rem;">Product Name</h2>
+                <div class="product-price" id="modal-price" style="font-size: 1.5rem;">Price</div>
+                <p id="modal-desc" style="color: var(--text-muted); margin: 1.5rem 0;">Description</p>
+                <ul class="modal-features" id="modal-features">
+                    <!-- Features -->
+                </ul>
+                <button class="btn btn-primary" id="modal-enquiry-btn" style="width: 100%; margin-top: 1rem;">Enquiry Now (WhatsApp)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 1rem;">MS <span>Enterprise</span></a>
+                    <p>Your one-stop solution for advanced security surveillance needs in Dahod.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="products.html">Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone"></i> 9574757153</li>
+                        <li><i class="fas fa-envelope"></i> msenterprisedahod@gmail.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Burhani Enclave, Opp Bhagini Samaj, SV Patel road, Dahod.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 MS Enterprise. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Supabase Client -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="script.js"></script>
+    <script>
+        let currentProducts = [];
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            renderCategories();
+            setupSearch();
+            
+            // Allow time for potential initial seeding
+            setTimeout(async () => {
+                await loadProducts('All');
+            }, 500);
+        });
+
+        function renderCategories() {
+            const container = document.getElementById('category-filters');
+            container.innerHTML = CATEGORIES.map(cat => 
+                `<button class="category-btn ${cat === 'All' ? 'active' : ''}" onclick="filterCategory('${cat}', this)">${cat}</button>`
+            ).join('');
+        }
+
+        async function filterCategory(category, btnElement) {
+            // Update active state
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            if(btnElement) btnElement.classList.add('active');
+            
+            // Clear search
+            document.getElementById('search-input').value = '';
+            
+            await loadProducts(category);
+        }
+
+        function setupSearch() {
+            const searchInput = document.getElementById('search-input');
+            let debounceTimer;
+            searchInput.addEventListener('input', (e) => {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(async () => {
+                    const query = e.target.value.trim();
+                    if (query.length > 2) {
+                        // Remove category active states
+                        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+                        await searchAndDisplay(query);
+                    } else if (query.length === 0) {
+                        filterCategory('All', document.querySelector('.category-btn')); // Select 'All'
+                    }
+                }, 300);
+            });
+        }
+
+        async function searchAndDisplay(query) {
+            const container = document.getElementById('products-grid');
+            container.innerHTML = '<p style="text-align: center; width: 100%; color: var(--text-muted);">Searching...</p>';
+            
+            const products = await searchProducts(query);
+            currentProducts = products;
+            renderProductsGrid(products);
+        }
+
+        async function loadProducts(category) {
+            const container = document.getElementById('products-grid');
+            container.innerHTML = '<p style="text-align: center; width: 100%; color: var(--text-muted);">Loading products...</p>';
+            
+            const products = await fetchProducts(category);
+            currentProducts = products;
+            renderProductsGrid(products);
+        }
+
+        function renderProductsGrid(products) {
+            const container = document.getElementById('products-grid');
+            if (products.length === 0) {
+                container.innerHTML = '<p style="text-align: center; width: 100%; color: var(--text-muted);">No products found.</p>';
+                return;
+            }
+
+            container.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <div class="product-img-container">
+                        <img src="${product.image_url || 'images/cctv_camera.png'}" alt="${product.name}">
+                    </div>
+                    <div class="product-info">
+                        <div class="product-category">${product.category}</div>
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">${formatCurrency(product.price)}</div>
+                        <div class="product-actions">
+                            <button class="btn btn-outline" onclick="openModal('${product.id}')">View Details</button>
+                            <button class="btn btn-primary" onclick="openEnquiryOptions('${product.name}')">Enquiry</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function openModal(productId) {
+            const product = currentProducts.find(p => p.id === productId);
+            if (!product) return;
+
+            document.getElementById('modal-image').src = product.image_url || 'images/cctv_camera.png';
+            document.getElementById('modal-category').textContent = product.category;
+            document.getElementById('modal-title').textContent = product.name;
+            document.getElementById('modal-price').textContent = formatCurrency(product.price);
+            document.getElementById('modal-desc').textContent = product.description;
+            
+            const featuresContainer = document.getElementById('modal-features');
+            if (product.features) {
+                const featuresList = product.features.split(',').map(f => `<li><i class="fas fa-check-circle"></i> ${f.trim()}</li>`).join('');
+                featuresContainer.innerHTML = featuresList;
+            } else {
+                featuresContainer.innerHTML = '';
+            }
+
+            document.getElementById('modal-enquiry-btn').onclick = () => {
+                openEnquiryOptions(product.name);
+            };
+
+            document.getElementById('product-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('active');
+        }
+
+        // Close modal on outside click
+        document.getElementById('product-modal').addEventListener('click', (e) => {
+            if (e.target.id === 'product-modal') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
