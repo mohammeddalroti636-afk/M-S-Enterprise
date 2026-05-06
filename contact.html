@@ -162,6 +162,35 @@
         </div>
     </div>
 
+    <!-- Customer Feedback Section -->
+    <section class="container reveal" style="margin-bottom: 5rem;">
+        <div class="glass-card" style="max-width: 800px; margin: 0 auto;">
+            <h2 style="margin-bottom: 1rem; text-align: center;">Customer Feedback</h2>
+            <p style="color: var(--text-muted); text-align: center; margin-bottom: 2rem;">How was your experience with MS Enterprise? We'd love to hear from you!</p>
+            <form id="feedbackForm" onsubmit="submitSiteFeedbackForm(event)">
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Your Name</label>
+                    <input type="text" id="fb-name" required placeholder="John Doe">
+                </div>
+                <div class="form-group" style="margin-bottom: 1rem;">
+                    <label>Rating</label>
+                    <select id="fb-rating" required style="width: 100%; padding: 1rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; border-radius: 4px; font-family: inherit;">
+                        <option value="5" style="color: black;">5 Stars - Excellent Service</option>
+                        <option value="4" style="color: black;">4 Stars - Good</option>
+                        <option value="3" style="color: black;">3 Stars - Average</option>
+                        <option value="2" style="color: black;">2 Stars - Poor</option>
+                        <option value="1" style="color: black;">1 Star - Terrible</option>
+                    </select>
+                </div>
+                <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <label>Your Feedback</label>
+                    <textarea id="fb-message" rows="4" required placeholder="Tell us about your experience..."></textarea>
+                </div>
+                <button type="submit" class="btn btn-outline" id="fb-submit-btn" style="width: 100%;">Submit Feedback</button>
+            </form>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="container">
@@ -209,6 +238,26 @@
             const phone = "919574757153";
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(fullMessage)}`;
             window.open(url, '_blank');
+        }
+
+        async function submitSiteFeedbackForm(e) {
+            e.preventDefault();
+            const name = document.getElementById('fb-name').value;
+            const rating = parseInt(document.getElementById('fb-rating').value);
+            const message = document.getElementById('fb-message').value;
+
+            const btn = document.getElementById('fb-submit-btn');
+            const originalText = btn.textContent;
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            await submitSiteFeedback(name, rating, message);
+
+            alert('Thank you for your feedback!');
+            
+            document.getElementById('feedbackForm').reset();
+            btn.textContent = originalText;
+            btn.disabled = false;
         }
     </script>
 </body>

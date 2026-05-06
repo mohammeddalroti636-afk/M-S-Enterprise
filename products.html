@@ -231,7 +231,29 @@
                 <ul class="modal-features" id="modal-features">
                     <!-- Features -->
                 </ul>
-                <button class="btn btn-primary" id="modal-enquiry-btn" style="width: 100%; margin-top: 1rem;">Enquiry Now (WhatsApp)</button>
+                <button class="btn btn-primary" id="modal-enquiry-btn" style="width: 100%; margin-top: 1rem; margin-bottom: 2rem;">Enquiry Now (WhatsApp)</button>
+                
+                <!-- Product Reviews Section -->
+                <div id="reviews-container" style="border-top: 1px solid var(--glass-border); padding-top: 2rem;">
+                    <h3 style="margin-bottom: 1rem;">Customer Reviews</h3>
+                    <div id="reviews-list" style="max-height: 200px; overflow-y: auto; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 1rem;">
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Loading reviews...</p>
+                    </div>
+                    
+                    <div class="add-review-box" style="background: rgba(255,255,255,0.02); padding: 1rem; border-radius: 8px; border: 1px solid var(--glass-border);">
+                        <h4 style="margin-bottom: 1rem; font-size: 1rem;">Write a Review</h4>
+                        <input type="text" id="review-name" placeholder="Your Name" style="width: 100%; padding: 0.8rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; border-radius: 4px;">
+                        <select id="review-rating" style="width: 100%; padding: 0.8rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; border-radius: 4px;">
+                            <option value="5" style="color: black;">5 Stars - Excellent</option>
+                            <option value="4" style="color: black;">4 Stars - Good</option>
+                            <option value="3" style="color: black;">3 Stars - Average</option>
+                            <option value="2" style="color: black;">2 Stars - Poor</option>
+                            <option value="1" style="color: black;">1 Star - Terrible</option>
+                        </select>
+                        <textarea id="review-comment" rows="2" placeholder="Your experience..." style="width: 100%; padding: 0.8rem; margin-bottom: 0.5rem; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); color: #fff; border-radius: 4px;"></textarea>
+                        <button class="btn btn-outline" style="width: 100%; font-size: 0.8rem; padding: 0.5rem;" onclick="handleReviewSubmit()">Submit Review</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -386,7 +408,60 @@
                 openEnquiryOptions(product.name);
             };
 
+            // Set global product ID for review submission
+            window.currentProductId = product.id;
+            loadProductReviews(product.id);
+
             document.getElementById('product-modal').classList.add('active');
+        }
+
+        async function loadProductReviews(productId) {
+            const list = document.getElementById('reviews-list');
+            list.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">Loading reviews...</p>';
+            
+            const reviews = await fetchProductReviews(productId);
+            
+            if (reviews.length === 0) {
+                list.innerHTML = '<p style="color: var(--text-muted); font-size: 0.9rem;">No reviews yet. Be the first!</p>';
+                return;
+            }
+
+            list.innerHTML = reviews.map(r => `
+                <div style="background: rgba(255,255,255,0.03); padding: 1rem; border-radius: 6px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                        <strong>${r.name}</strong>
+                        <span style="color: #fbbf24; font-size: 0.9rem;">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+                    </div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem; margin: 0;">${r.comment || ''}</p>
+                </div>
+            `).join('');
+        }
+
+        async function handleReviewSubmit() {
+            const nameEl = document.getElementById('review-name');
+            const ratingEl = document.getElementById('review-rating');
+            const commentEl = document.getElementById('review-comment');
+            
+            const name = nameEl.value.trim();
+            const rating = parseInt(ratingEl.value);
+            const comment = commentEl.value.trim();
+            
+            if (!name) return alert('Please enter your name.');
+            
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = 'Submitting...';
+            btn.disabled = true;
+
+            await submitProductReview(window.currentProductId, name, rating, comment);
+            
+            nameEl.value = '';
+            commentEl.value = '';
+            btn.textContent = originalText;
+            btn.disabled = false;
+            
+            // Reload reviews
+            loadProductReviews(window.currentProductId);
         }
 
         function closeModal() {

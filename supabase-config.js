@@ -156,6 +156,37 @@ async function uploadProductImage(file) {
     return urlData.publicUrl;
 }
 
+// ========== REVIEWS & FEEDBACK FUNCTIONS ==========
+
+async function fetchProductReviews(productId) {
+    const { data, error } = await supabaseClient
+        .from('product_reviews')
+        .select('*')
+        .eq('product_id', productId)
+        .order('created_at', { ascending: false });
+    if (error) {
+        console.error('Error fetching reviews:', error);
+        return [];
+    }
+    return data || [];
+}
+
+async function submitProductReview(productId, name, rating, comment) {
+    const { data, error } = await supabaseClient
+        .from('product_reviews')
+        .insert([{ product_id: productId, name, rating, comment }]);
+    if (error) console.error('Error submitting review:', error);
+    return { data, error };
+}
+
+async function submitSiteFeedback(name, rating, message) {
+    const { data, error } = await supabaseClient
+        .from('site_feedback')
+        .insert([{ name, rating, message }]);
+    if (error) console.error('Error submitting feedback:', error);
+    return { data, error };
+}
+
 function fileToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
