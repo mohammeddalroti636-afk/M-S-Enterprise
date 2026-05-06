@@ -111,26 +111,26 @@
         <div>
             <h2 style="margin-bottom: 2rem;">Get in Touch</h2>
             <div class="contact-info-cards">
-                <div class="info-card glass-card">
+                <a href="tel:9574757153" class="info-card glass-card">
                     <i class="fas fa-phone-alt"></i>
                     <h4>Phone</h4>
                     <p>9574757153</p>
-                </div>
-                <div class="info-card glass-card">
+                </a>
+                <a href="https://wa.me/919574757153" target="_blank" class="info-card glass-card">
                     <i class="fab fa-whatsapp"></i>
                     <h4>WhatsApp</h4>
                     <p>+91 9574757153</p>
-                </div>
-                <div class="info-card glass-card">
+                </a>
+                <a href="mailto:msenterprisedahod@gmail.com" class="info-card glass-card">
                     <i class="fas fa-envelope"></i>
                     <h4>Email</h4>
                     <p>msenterprisedahod<br>@gmail.com</p>
-                </div>
-                <div class="info-card glass-card">
+                </a>
+                <a href="https://maps.google.com/maps?q=Burhani%20Enclave,%20Opp%20Bhagini%20Samaj,%20SV%20Patel%20road,%20Dahod" target="_blank" class="info-card glass-card">
                     <i class="fas fa-map-marker-alt"></i>
                     <h4>Location</h4>
                     <p>Burhani Enclave, SV Patel road, Dahod</p>
-                </div>
+                </a>
             </div>
         </div>
 
@@ -206,7 +206,9 @@
             if (service) fullMessage += `I am interested in: ${service}.\n`;
             fullMessage += `Message: ${msg}`;
 
-            sendWhatsAppMessage(fullMessage);
+            const phone = "919574757153";
+            const url = `https://wa.me/${phone}?text=${encodeURIComponent(fullMessage)}`;
+            window.open(url, '_blank');
         }
     </script>
 </body>
